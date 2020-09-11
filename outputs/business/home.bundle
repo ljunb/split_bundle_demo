@@ -1,0 +1,73 @@
+__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
+  var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
+
+  var _interopRequireWildcard = _$$_REQUIRE(_dependencyMap[1], "@babel/runtime/helpers/interopRequireWildcard");
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = void 0;
+
+  var _classCallCheck2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[2], "@babel/runtime/helpers/classCallCheck"));
+
+  var _createClass2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[3], "@babel/runtime/helpers/createClass"));
+
+  var _inherits2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[4], "@babel/runtime/helpers/inherits"));
+
+  var _possibleConstructorReturn2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[5], "@babel/runtime/helpers/possibleConstructorReturn"));
+
+  var _getPrototypeOf2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[6], "@babel/runtime/helpers/getPrototypeOf"));
+
+  var _react = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[7], "react"));
+
+  var _reactNative = _$$_REQUIRE(_dependencyMap[8], "react-native");
+
+  var _jsxFileName = "/Users/cookiej/xiaopeng/split_bundler_demo/business/home/entry.js";
+
+  function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2.default)(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2.default)(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2.default)(this, result); }; }
+
+  function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+  var styles = _reactNative.StyleSheet.create({
+    container: {
+      flex: 1
+    }
+  });
+
+  var Home = function (_PureComponent) {
+    (0, _inherits2.default)(Home, _PureComponent);
+
+    var _super = _createSuper(Home);
+
+    function Home() {
+      (0, _classCallCheck2.default)(this, Home);
+      return _super.apply(this, arguments);
+    }
+
+    (0, _createClass2.default)(Home, [{
+      key: "render",
+      value: function render() {
+        return _react.default.createElement(_reactNative.View, {
+          style: styles.container,
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 18,
+            columnNumber: 7
+          }
+        }, _react.default.createElement(_reactNative.Text, {
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 19,
+            columnNumber: 9
+          }
+        }, "Home"));
+      }
+    }]);
+    return Home;
+  }(_react.PureComponent);
+
+  exports.default = Home;
+},"business_home_entry",["node_modules_@babel_runtime_helpers_interopRequireDefault","node_modules_@babel_runtime_helpers_interopRequireWildcard","node_modules_@babel_runtime_helpers_classCallCheck","node_modules_@babel_runtime_helpers_createClass","node_modules_@babel_runtime_helpers_inherits","node_modules_@babel_runtime_helpers_possibleConstructorReturn","node_modules_@babel_runtime_helpers_getPrototypeOf","node_modules_react_index","node_modules_react-native_index"],"business/home/entry.js");
+__r("business_home_entry");
