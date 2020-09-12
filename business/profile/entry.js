@@ -4,15 +4,17 @@
  * Description :
  */
 import React, {PureComponent} from 'react';
-import {StyleSheet, View, Text} from 'react-native';
+import {StyleSheet, View, Text, AppRegistry} from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 
-export default class Profile extends PureComponent {
+class Profile extends PureComponent {
   render() {
     return (
       <View style={styles.container}>
@@ -21,3 +23,5 @@ export default class Profile extends PureComponent {
     );
   }
 }
+
+AppRegistry.registerComponent('profile', () => Profile);

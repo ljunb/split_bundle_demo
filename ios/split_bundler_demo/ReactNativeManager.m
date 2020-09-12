@@ -18,7 +18,13 @@
 @end
 
 @interface ReactNativeManager () <RCTBridgeDelegate>
+/**
+ 已经加载过的bundle
+ */
 @property (nonatomic, strong) NSMutableArray *loadedBundle;
+/**
+ 预加载的bundle
+ */
 @property (nonatomic, strong) NSMutableArray *preloadBundles;
 @end
 
@@ -37,7 +43,12 @@
   return manager;
 }
 
-- (void)asyncLoadCommonBundleWithLaunchOptions:(NSDictionary *)launchOptions complete:(void (^)(void))complete {
+- (void)asyncLoadCommonBundle {
+  [self asyncLoadCommonBundleWithLaunchOptions:nil complete:nil];
+}
+
+- (void)asyncLoadCommonBundleWithLaunchOptions:(nullable NSDictionary *)launchOptions
+                                      complete:(nullable void(^)(void))complete {
   
   self.launchOptions = launchOptions;
   if (!_bridge) {
@@ -54,14 +65,13 @@
   }
 }
 
-- (RCTRootView *)rootViewWithBundleName:(NSString *)bundleName launchOptions:(NSDictionary *)launchOptions {
-  if (!bundleName || bundleName.length == 0) {
-    return nil;
-  }
-  
-  [self loadBusinessBundleWithName:bundleName sync:YES];
-  return nil;
+
+- (void)setupRootViewWithBundleName:(NSString *)bundleName
+                      launchOptions:(nullable NSDictionary *)launchOptions
+                           complete:(SetupRootViewBlock)complete {
+  [self loadBusinessBundleWithName:bundleName sync:YES launchOptions:launchOptions complete:complete];
 }
+
 
 - (void)setupPreloadModules:(NSArray * _Nonnull (^)(void))preModules {
   if (preModules) {
@@ -72,9 +82,13 @@
   }
 }
 
+
 #pragma mark - RCTJavaScriptDidLoadNotification
 - (void)onCommonBundleLoaded:(NSNotification *)notify {
-  [self cacheLoadedBundle:@"common"];
+  if (![self.loadedBundle containsObject:@"common"]) {
+    [self cacheLoadedBundle:@"common"];
+  }
+  // 加载所有需要预加载的bundle
   [self loadAllPreloadBundles];
 }
 
@@ -83,56 +97,77 @@
     return;
   }
   for (NSString *bundleName in self.preloadBundles) {
-    [self loadBusinessBundleWithName:bundleName sync:NO];
+    [self loadBusinessBundleWithName:bundleName sync:NO launchOptions:self.launchOptions complete:nil];
   }
 }
 
+
 #pragma mark - RCTBridgeDelegate
 - (NSURL *)sourceURLForBridge:(RCTBridge *)bridge {
+  // 基础bundle的URL
   return [self bundleURLWithName:@"common"];
 }
 
+
 #pragma mark - Private methods
-- (void)loadBusinessBundleWithName:(NSString *)bundleName sync:(BOOL)sync {
+- (void)loadBusinessBundleWithName:(NSString *)bundleName
+                              sync:(BOOL)sync
+                     launchOptions:(NSDictionary *)launchOptions
+                          complete:(SetupRootViewBlock)complete {
   if (!bundleName || bundleName.length == 0) {
     return;
   }
   
   // 已加载过该 bundle
   if ([self.loadedBundle containsObject:bundleName]) {
+    // 如果有结束回调，还是给个 RCTRootView 回去
+    if (complete) {
+      RCTRootView *rctView = [[RCTRootView alloc] initWithBridge:self.bridge
+                                                      moduleName:bundleName
+                                               initialProperties:launchOptions];
+      complete(rctView);
+    }
     return;
   }
   
+  // 打上缓存标记
   [self cacheLoadedBundle:bundleName];
   
   // 同步加载
   if (sync) {
-    [self syncLoadBusinessBundleWithName:bundleName];
+    [self loadBundleURLAtName:bundleName launchOptions:launchOptions complete:complete];
   } else {
     // 异步加载
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-      [self syncLoadBusinessBundleWithName:bundleName];
+      [self loadBundleURLAtName:bundleName launchOptions:launchOptions complete:complete];
     });
   }
 }
 
-- (void)syncLoadBusinessBundleWithName:(NSString *)bundleName {
+- (void)loadBundleURLAtName:(NSString *)bundleName
+              launchOptions:(NSDictionary *)launchOptions
+                   complete:(SetupRootViewBlock)complete{
   
   NSURL *bundleURL = [self bundleURLWithName:bundleName];
   NSAssert(bundleURL, @"加载bundle失败，bundleURL为nil");
   
   [RCTJavaScriptLoader loadBundleAtURL:bundleURL onProgress:nil onComplete:^(NSError *error, RCTSource *source) {
-    
     if (!error && source.data) {
       dispatch_async(dispatch_get_main_queue(), ^{
         [self.bridge.batchedBridge executeSourceCode:source.data sync:YES];
-        
-        [[NSNotificationCenter defaultCenter] postNotificationName:RNBundleLoadedNotification object:nil userInfo:@{@"bundle":bundleName}];
+        // bundle加载完毕，新建 RCTRootView
+        if (complete) {
+          RCTRootView *rctView = [[RCTRootView alloc] initWithBridge:self.bridge
+                                                          moduleName:bundleName
+                                                   initialProperties:launchOptions];
+          complete(rctView);
+        }
       });
     } else {
-      
+      if (complete) {
+        complete(nil);
+      }
     }
-    
   }];
 }
 

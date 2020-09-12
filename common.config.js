@@ -3,6 +3,7 @@ const pathSep = require('path').sep;
 
 const makeCommonDependencyDir = (path) => {
   const depPath = `${process.cwd()}${pathSep}outputs`;
+  // path: /User/linjb/split_bundle_demo/outputs/common_dependency
   const depFilePath = `${depPath}${pathSep}common_dependency`;
   if (fs.existsSync(depPath)) {
     fs.appendFileSync(depFilePath, `\n${path}`);
