@@ -1,15 +1,20 @@
 const fs = require('fs');
-const pathSep = require('path').sep;
+const path = require('path');
+const pathSep = path.sep;
 
-const makeCommonDependencyDir = (path) => {
-  const depPath = `${process.cwd()}${pathSep}outputs`;
+const makeCommonDependencyDir = (depPath) => {
+  const outputsPath = `${process.cwd()}${pathSep}outputs`;
   // path: /User/linjb/split_bundle_demo/outputs/common_dependency
-  const depFilePath = `${depPath}${pathSep}common_dependency`;
-  if (fs.existsSync(depPath)) {
-    fs.appendFileSync(depFilePath, `\n${path}`);
+  const depFilePath = `${outputsPath}${pathSep}common_dependency`;
+  // remove client user path
+  const basename = path.basename(process.cwd());
+  const writeDepPath = depPath.substr(depPath.indexOf(basename));
+
+  if (fs.existsSync(outputsPath)) {
+    fs.appendFileSync(depFilePath, `\n${writeDepPath}`);
   } else {
-    fs.mkdirSync(depPath);
-    fs.writeFileSync(depFilePath, path);
+    fs.mkdirSync(outputsPath);
+    fs.writeFileSync(depFilePath, writeDepPath);
   }
 };
 

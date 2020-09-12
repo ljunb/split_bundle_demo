@@ -18,16 +18,15 @@
 		2DCD954D1E0B4F2C00145EB5 /* split_bundler_demoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* split_bundler_demoTests.m */; };
 		374AD42101517EA0B3E31D89 /* libPods-split_bundler_demo-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A488D3ED215012D302753AF9 /* libPods-split_bundler_demo-tvOSTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		AADF167F250C65BD005536C3 /* ReactNativeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AADF167E250C65BD005536C3 /* ReactNativeManager.m */; };
-		AADF168E250CACE9005536C3 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AADF168D250CACE9005536C3 /* MainViewController.m */; };
-		AADF1691250CAE0C005536C3 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AADF1690250CAE0C005536C3 /* HomeViewController.m */; };
-		AADF1694250CAE9F005536C3 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AADF1693250CAE9F005536C3 /* ProfileViewController.m */; };
-		AADF1697250CC03D005536C3 /* IndexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AADF1696250CC03D005536C3 /* IndexViewController.m */; };
 		AADF1699250CC51A005536C3 /* common.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AADF1698250CC519005536C3 /* common.bundle */; };
 		AADF169D250CC523005536C3 /* profile.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AADF169A250CC522005536C3 /* profile.bundle */; };
 		AADF169E250CC523005536C3 /* home.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AADF169B250CC522005536C3 /* home.bundle */; };
 		AADF169F250CC523005536C3 /* index.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AADF169C250CC522005536C3 /* index.bundle */; };
-		AADF16A1250CC691005536C3 /* detail.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AADF16A0250CC691005536C3 /* detail.bundle */; };
+		AADF16AE250CCC85005536C3 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AADF16A3250CCC84005536C3 /* HomeViewController.m */; };
+		AADF16AF250CCC85005536C3 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AADF16A6250CCC85005536C3 /* MainViewController.m */; };
+		AADF16B0250CCC85005536C3 /* IndexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AADF16A7250CCC85005536C3 /* IndexViewController.m */; };
+		AADF16B1250CCC85005536C3 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AADF16A9250CCC85005536C3 /* ProfileViewController.m */; };
+		AADF16B2250CCC85005536C3 /* ReactNativeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AADF16AC250CCC85005536C3 /* ReactNativeManager.m */; };
 		AC670493E0551496DF884D0C /* libPods-split_bundler_demo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E289A859C77E859D09602645 /* libPods-split_bundler_demo.a */; };
 		BB546E46E846E4473E9A2D55 /* libPods-split_bundler_demo-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 74109C6D2B85602B849A49C0 /* libPods-split_bundler_demo-tvOS.a */; };
 /* End PBXBuildFile section */
@@ -70,21 +69,20 @@
 		7DD1D2E270C6C070009CB04C /* Pods-split_bundler_demo-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-split_bundler_demo-tvOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-split_bundler_demo-tvOSTests/Pods-split_bundler_demo-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = split_bundler_demo/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A488D3ED215012D302753AF9 /* libPods-split_bundler_demo-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-split_bundler_demo-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		AADF167D250C65BD005536C3 /* ReactNativeManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ReactNativeManager.h; path = split_bundler_demo/ReactNativeManager.h; sourceTree = "<group>"; };
-		AADF167E250C65BD005536C3 /* ReactNativeManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ReactNativeManager.m; path = split_bundler_demo/ReactNativeManager.m; sourceTree = "<group>"; };
-		AADF168C250CACE9005536C3 /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
-		AADF168D250CACE9005536C3 /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
-		AADF168F250CAE0C005536C3 /* HomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
-		AADF1690250CAE0C005536C3 /* HomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
-		AADF1692250CAE9F005536C3 /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
-		AADF1693250CAE9F005536C3 /* ProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
-		AADF1695250CC03D005536C3 /* IndexViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IndexViewController.h; sourceTree = "<group>"; };
-		AADF1696250CC03D005536C3 /* IndexViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IndexViewController.m; sourceTree = "<group>"; };
 		AADF1698250CC519005536C3 /* common.bundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = common.bundle; path = ../outputs/common.bundle; sourceTree = "<group>"; };
 		AADF169A250CC522005536C3 /* profile.bundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = profile.bundle; path = ../outputs/business/profile.bundle; sourceTree = "<group>"; };
 		AADF169B250CC522005536C3 /* home.bundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = home.bundle; path = ../outputs/business/home.bundle; sourceTree = "<group>"; };
 		AADF169C250CC522005536C3 /* index.bundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = index.bundle; path = ../outputs/business/index.bundle; sourceTree = "<group>"; };
-		AADF16A0250CC691005536C3 /* detail.bundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = detail.bundle; path = ../outputs/business/detail.bundle; sourceTree = "<group>"; };
+		AADF16A3250CCC84005536C3 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		AADF16A4250CCC85005536C3 /* IndexViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndexViewController.h; sourceTree = "<group>"; };
+		AADF16A5250CCC85005536C3 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
+		AADF16A6250CCC85005536C3 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		AADF16A7250CCC85005536C3 /* IndexViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndexViewController.m; sourceTree = "<group>"; };
+		AADF16A8250CCC85005536C3 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		AADF16A9250CCC85005536C3 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		AADF16AA250CCC85005536C3 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		AADF16AC250CCC85005536C3 /* ReactNativeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReactNativeManager.m; sourceTree = "<group>"; };
+		AADF16AD250CCC85005536C3 /* ReactNativeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReactNativeManager.h; sourceTree = "<group>"; };
 		CEED70931682CC306F2258E9 /* Pods-split_bundler_demo-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-split_bundler_demo-tvOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-split_bundler_demo-tvOS/Pods-split_bundler_demo-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		D6F8D9E24BDCD485CD236E13 /* Pods-split_bundler_demo-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-split_bundler_demo-tvOSTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-split_bundler_demo-tvOSTests/Pods-split_bundler_demo-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E289A859C77E859D09602645 /* libPods-split_bundler_demo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-split_bundler_demo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -150,7 +148,6 @@
 		13B07FAE1A68108700A75B9A /* split_bundler_demo */ = {
 			isa = PBXGroup;
 			children = (
-				AADF16A0250CC691005536C3 /* detail.bundle */,
 				AADF169B250CC522005536C3 /* home.bundle */,
 				AADF169C250CC522005536C3 /* index.bundle */,
 				AADF169A250CC522005536C3 /* profile.bundle */,
@@ -158,20 +155,12 @@
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
+				AADF16A2250CCC84005536C3 /* Controllers */,
+				AADF16AB250CCC85005536C3 /* RNSplitter */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
-				AADF167D250C65BD005536C3 /* ReactNativeManager.h */,
-				AADF167E250C65BD005536C3 /* ReactNativeManager.m */,
-				AADF168C250CACE9005536C3 /* MainViewController.h */,
-				AADF168D250CACE9005536C3 /* MainViewController.m */,
-				AADF168F250CAE0C005536C3 /* HomeViewController.h */,
-				AADF1690250CAE0C005536C3 /* HomeViewController.m */,
-				AADF1692250CAE9F005536C3 /* ProfileViewController.h */,
-				AADF1693250CAE9F005536C3 /* ProfileViewController.m */,
-				AADF1695250CC03D005536C3 /* IndexViewController.h */,
-				AADF1696250CC03D005536C3 /* IndexViewController.m */,
 			);
 			name = split_bundler_demo;
 			sourceTree = "<group>";
@@ -220,6 +209,32 @@
 				2D02E4901E0B4A5D006451C7 /* split_bundler_demo-tvOSTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		AADF16A2250CCC84005536C3 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				AADF16A4250CCC85005536C3 /* IndexViewController.h */,
+				AADF16A7250CCC85005536C3 /* IndexViewController.m */,
+				AADF16A5250CCC85005536C3 /* ProfileViewController.h */,
+				AADF16A9250CCC85005536C3 /* ProfileViewController.m */,
+				AADF16AA250CCC85005536C3 /* MainViewController.h */,
+				AADF16A6250CCC85005536C3 /* MainViewController.m */,
+				AADF16A8250CCC85005536C3 /* HomeViewController.h */,
+				AADF16A3250CCC84005536C3 /* HomeViewController.m */,
+			);
+			name = Controllers;
+			path = split_bundler_demo/Controllers;
+			sourceTree = "<group>";
+		};
+		AADF16AB250CCC85005536C3 /* RNSplitter */ = {
+			isa = PBXGroup;
+			children = (
+				AADF16AD250CCC85005536C3 /* ReactNativeManager.h */,
+				AADF16AC250CCC85005536C3 /* ReactNativeManager.m */,
+			);
+			name = RNSplitter;
+			path = split_bundler_demo/RNSplitter;
 			sourceTree = "<group>";
 		};
 		B4D85801DBD62E400A1D1180 /* Pods */ = {
@@ -380,7 +395,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				AADF169F250CC523005536C3 /* index.bundle in Resources */,
-				AADF16A1250CC691005536C3 /* detail.bundle in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				AADF169E250CC523005536C3 /* home.bundle in Resources */,
@@ -613,12 +627,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
-				AADF1697250CC03D005536C3 /* IndexViewController.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
-				AADF167F250C65BD005536C3 /* ReactNativeManager.m in Sources */,
-				AADF1691250CAE0C005536C3 /* HomeViewController.m in Sources */,
-				AADF1694250CAE9F005536C3 /* ProfileViewController.m in Sources */,
-				AADF168E250CACE9005536C3 /* MainViewController.m in Sources */,
+				AADF16AF250CCC85005536C3 /* MainViewController.m in Sources */,
+				AADF16B2250CCC85005536C3 /* ReactNativeManager.m in Sources */,
+				AADF16B1250CCC85005536C3 /* ProfileViewController.m in Sources */,
+				AADF16AE250CCC85005536C3 /* HomeViewController.m in Sources */,
+				AADF16B0250CCC85005536C3 /* IndexViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

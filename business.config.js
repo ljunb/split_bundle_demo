@@ -1,8 +1,9 @@
 const fs = require('fs');
-const pathSep = require('path').sep;
+const path = require('path');
+const pathSep = path.sep;
 
 let comDepSet = null;
-const checkCommonDependency = (path) => {
+const checkCommonDependency = (depPath) => {
   const outputsPath = `${process.cwd()}${pathSep}outputs${pathSep}`;
   const commonDepPath = `${outputsPath}common_dependency`;
   const businessPath = `${outputsPath}business${pathSep}`;
@@ -19,7 +20,10 @@ const checkCommonDependency = (path) => {
   } else if (comDepSet === null) {
     comDepSet = new Set();
   }
-  return comDepSet.has(path);
+
+  const basename = path.basename(process.cwd());
+  const writeDepPath = depPath.substr(depPath.indexOf(basename));
+  return comDepSet.has(writeDepPath);
 };
 
 /**

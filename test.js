@@ -6,4 +6,4 @@
 const path = require('path');
 const projectPath = process.cwd();
 
-console.log(__dirname);
+console.log(__dirname, path.basename(__dirname));
