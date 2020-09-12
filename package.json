@@ -8,10 +8,10 @@
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint .",
-    "build-common": "react-native bundle --entry-file ./common.js --config ./common.config.js --bundle-output ./outputs/common.bundle",
-    "build-index": "react-native bundle --entry-file ./index.js --config business.config.js --bundle-output ./outputs/business/index.bundle",
-    "build-home": "react-native bundle --entry-file ./business/home/entry.js --config business.config.js --bundle-output ./outputs/business/home.bundle",
-    "build-profile": "react-native bundle --entry-file ./business/profile/entry.js --config business.config.js --bundle-output ./outputs/business/profile.bundle"
+    "build-common": "react-native bundle --entry-file ./common.js --config ./common.config.js --bundle-output ./outputs/common.bundle --dev false",
+    "build-index": "react-native bundle --entry-file ./index.js --config business.config.js --bundle-output ./outputs/business/index.bundle --dev false",
+    "build-home": "react-native bundle --entry-file ./business/home/entry.js --config business.config.js --bundle-output ./outputs/business/home.bundle --dev false",
+    "build-profile": "react-native bundle --entry-file ./business/profile/entry.js --config business.config.js --bundle-output ./outputs/business/profile.bundle --dev false"
   },
   "dependencies": {
     "react": "16.13.1",

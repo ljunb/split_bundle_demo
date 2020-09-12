@@ -4,7 +4,7 @@
  * Description :
  */
 import React, {PureComponent} from 'react';
-import {StyleSheet, View, Text} from 'react-native';
+import {StyleSheet, View, Text, AppRegistry} from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default class Home extends PureComponent {
+class Home extends PureComponent {
   render() {
     return (
       <View style={styles.container}>
@@ -21,3 +21,5 @@ export default class Home extends PureComponent {
     );
   }
 }
+
+AppRegistry.registerComponent('home', () => Home);
