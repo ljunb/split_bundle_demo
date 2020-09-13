@@ -12,7 +12,9 @@ const checkCommonDependency = (depPath) => {
     fs.mkdirSync(businessPath);
   }
 
+  // TODO：待优化，每次都生成一个set了
   if (comDepSet === null && fs.existsSync(commonDepPath)) {
+    // 获取基础包的依赖，保存到一个集合里面
     const depPaths = String(fs.readFileSync(commonDepPath))
       .split('\n')
       .filter((dep) => dep.length > 0);
