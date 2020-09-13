@@ -10,7 +10,7 @@
 ```shell script
 react-native bundle --entry-file ./index.js --bundle-output ./outputs/main.jsbundle --dev false --platform ios
 ```
-实际 ReactNative 打包 `bundle` 支持的命令参数还有很多，具体可以运行 `react-native bundle --help` 查看更多参数。在罗列出来的参数中，会有一个 `--config [string]` 的选项，实际该参数即是 `Metro` 中接收序列化配置的选项。具体参考 [Serializer Options](https://facebook.github.io/Metro/docs/configuration#serializer-options)。
+实际 ReactNative 打包 `bundle` 支持的命令参数还有很多，具体可以运行 `react-native bundle --help` 查看更多参数。在罗列出来的参数中，会有一个 `--config [string]` 的选项，实际该参数即是 Metro 中接收序列化配置的选项。具体参考 [Serializer Options](https://facebook.github.io/Metro/docs/configuration#serializer-options)。
 
 在序列化的配置选项中，用于拆包的主要涉及到以下两个：
 * `createModuleIdFactory`：用于生成每个 `module` 的 ID，规则怎么定都可以，只要确保唯一
@@ -23,10 +23,10 @@ react-native bundle --entry-file ./index.js --bundle-output ./outputs/main.jsbun
 react-native bundle --entry-file ./index.js --config ./common.config.js --bundle-output ./outputs/main.jsbundle --dev false --platform ios
 ```
 
-至此，在对序列化配置选项已经不同打包命令有个大概了解后，接下来可以简单地梳理下拆包流程。
+至此，在对序列化配置选项以及不同打包命令有个大概了解后，接下来可以简单地梳理下拆包流程。
 
 先是 `common.bundle`：
-* 新增针对基础包的配置文件 `common.config.j`，命名随意
+* 新增针对基础包的配置文件 `common.config.js`，命名随意
 * 配置文件最终导出的是 `{ serializer: { createModuleIdFactory, processModuleFilter }`
 * `createModuleIdFactory` 选项只要保证生成唯一 ID 即可
 * `processModuleFilter` 选项是用于过滤 `module` 的，在判断该 `module` 符合基础包依赖的同时，将依赖唯一标识（这里取文件路径）写入本地，用于后续打业务包时过滤依赖
@@ -104,6 +104,7 @@ module.exports = {
 
 而业务包的配置文件，也基本差不多，主要会做一个依赖过滤的操作：
 ```javascript
+// business.config.js
 const fs = require('fs');
 const path = require('path');
 const pathSep = path.sep;
@@ -181,7 +182,7 @@ module.exports = {
   },
 };
 ```
-到此完成 `Metro` 命令相关的支持，可以把相关打包命令添加到 `package.json` 的 `scripts` 中，方便命令执行：
+到此完成 Metro 命令相关的支持，可以把相关打包命令添加到 `package.json` 的 `scripts` 中，方便命令执行：
 ```json
 {
   "scripts": {
