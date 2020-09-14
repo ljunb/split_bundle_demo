@@ -53,7 +53,7 @@ typedef void(^SetupRootViewBlock)(RCTRootView * _Nullable rctView);
 /**
  设置需要预加载的模块
  */
-- (void)setupPreloadModules:(NSArray *(^)(void))preModules;
+- (void)setupPreloadBundles:(NSArray *)preBundles;
 
 @end
 

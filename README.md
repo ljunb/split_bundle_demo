@@ -197,13 +197,13 @@ module.exports = {
 #### Native 端支持
 分包我们已经完成，接下来需要增加 Native 端的支持。按一开始分包后的预期，是实现基础包的预加载，然后在进入具体业务页面的时候，再按需加载对应的业务 `bundle`。
 
-在有一个基础思路的指引后，可以新增一个针对 ReactNative 简单管理的类 [ReactNativeManager](https://github.com/ljunb/split_bundle_demo/blob/master/ios/split_bundler_demo/RNSplitter/ReactNativeManager.h)，简单梳理如下：
+在有一个基础思路的指引后，可以新增一个针对 ReactNative 简单管理的类 [ReactNativeManager](https://github.com/ljunb/split_bundle_demo/blob/master/ios/split_bundler_demo/RNSplitter/ReactNativeManager.h) 以及专门管理 `bundle` 加载的类 [RNBundleLoader](https://github.com/ljunb/split_bundle_demo/blob/master/ios/split_bundler_demo/RNSplitter/RNBundleLoader.h)，简单梳理如下：
 * 移除 AppDelegate 中的 RCTBridgeDelegate 代理方法 `- sourceURLForBridge:`
 * ReactNativeManager 中持有全局单例 RCTBridge，同时实现 `- sourceURLForBridge` 代理方法，返回基础包的 `URL`
-* 监听 `RCTJavaScriptDidLoadNotification` 通知，当加载完基础包后将会触发该通知，如果有需要预加载的业务包，则进行加载
+* RNBundleLoader 监听 `RCTJavaScriptDidLoadNotification` 通知，当加载完基础包后将会触发该通知，如果有需要预加载的业务包，则进行加载
 * 业务包的加载需要用到 RCTJavaScriptLoader 的 `+ loadBundleAtURL:onProgress:onComplete:`，并在结束回调中，执行 RCTCxxBridge 的 `- executeSourceCode:sync:` 方法加载 JavaScript 脚本（这里需要新建 RCTBridge 分类，暴露出`- executeSourceCode:sync:` 方法，注：分类方法的查找流程，如果分类没有实现，最终将查找到其宿主类的方法列表）
-* ReactNativeManager 保留一份已加载过的 `bundle` 记录，如果已经加载过，那么就不再加载，这样可以避免 JavaScript 脚本加载结束通知 `RCTJavaScriptDidLoadNotification` 的循环触发
-* ReactNativeManager 暴露创建 RCTRootView 的方法，将会在 `+ loadBundleAtURL:onProgress:onComplete:` 结束回调中触发，返回新建的实例；如果已经加载过了 `bundle`，那么直接新建实例返回
+* RNBundleLoader 保留一份已加载过的 `bundle` 记录，如果已经加载过，那么就不再加载，这样可以避免 JavaScript 脚本加载结束通知 `RCTJavaScriptDidLoadNotification` 的循环触发
+* ReactNativeManager 暴露创建 RCTRootView 的方法 `- setupRootViewWithBundleName:launchOptions:complete:`，如果 `bundle` 加载成功或加载过，返回新建的实例；否则返回 `nil`
 
 更具体的逻辑可以查看源码。
 
@@ -222,7 +222,7 @@ npm run build-profile
 ### Plan
 - [x] 分包处理
 - [x] 按需加载
-- [ ] 调试相关
+- [x] 调试相关
 - [ ] 路由管理
 - [ ] 打包config文件优化以及cli支持
 - [ ] ram-bundle 深入研究

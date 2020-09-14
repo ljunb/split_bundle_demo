@@ -18,6 +18,7 @@
 		2DCD954D1E0B4F2C00145EB5 /* split_bundler_demoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* split_bundler_demoTests.m */; };
 		374AD42101517EA0B3E31D89 /* libPods-split_bundler_demo-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A488D3ED215012D302753AF9 /* libPods-split_bundler_demo-tvOSTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		AAB09056250F3C89009541EE /* RNBundleLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB09055250F3C89009541EE /* RNBundleLoader.m */; };
 		AADF1699250CC51A005536C3 /* common.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AADF1698250CC519005536C3 /* common.bundle */; };
 		AADF169D250CC523005536C3 /* profile.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AADF169A250CC522005536C3 /* profile.bundle */; };
 		AADF169E250CC523005536C3 /* home.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AADF169B250CC522005536C3 /* home.bundle */; };
@@ -69,6 +70,9 @@
 		7DD1D2E270C6C070009CB04C /* Pods-split_bundler_demo-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-split_bundler_demo-tvOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-split_bundler_demo-tvOSTests/Pods-split_bundler_demo-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = split_bundler_demo/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A488D3ED215012D302753AF9 /* libPods-split_bundler_demo-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-split_bundler_demo-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AAB09053250F177A009541EE /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		AAB09054250F3C89009541EE /* RNBundleLoader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNBundleLoader.h; sourceTree = "<group>"; };
+		AAB09055250F3C89009541EE /* RNBundleLoader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNBundleLoader.m; sourceTree = "<group>"; };
 		AADF1698250CC519005536C3 /* common.bundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = common.bundle; path = ../outputs/common.bundle; sourceTree = "<group>"; };
 		AADF169A250CC522005536C3 /* profile.bundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = profile.bundle; path = ../outputs/business/profile.bundle; sourceTree = "<group>"; };
 		AADF169B250CC522005536C3 /* home.bundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = home.bundle; path = ../outputs/business/home.bundle; sourceTree = "<group>"; };
@@ -161,6 +165,7 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
+				AAB09053250F177A009541EE /* PrefixHeader.pch */,
 			);
 			name = split_bundler_demo;
 			sourceTree = "<group>";
@@ -232,6 +237,8 @@
 			children = (
 				AADF16AD250CCC85005536C3 /* ReactNativeManager.h */,
 				AADF16AC250CCC85005536C3 /* ReactNativeManager.m */,
+				AAB09054250F3C89009541EE /* RNBundleLoader.h */,
+				AAB09055250F3C89009541EE /* RNBundleLoader.m */,
 			);
 			name = RNSplitter;
 			path = split_bundler_demo/RNSplitter;
@@ -630,6 +637,7 @@
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 				AADF16AF250CCC85005536C3 /* MainViewController.m in Sources */,
 				AADF16B2250CCC85005536C3 /* ReactNativeManager.m in Sources */,
+				AAB09056250F3C89009541EE /* RNBundleLoader.m in Sources */,
 				AADF16B1250CCC85005536C3 /* ProfileViewController.m in Sources */,
 				AADF16AE250CCC85005536C3 /* HomeViewController.m in Sources */,
 				AADF16B0250CCC85005536C3 /* IndexViewController.m in Sources */,
@@ -720,6 +728,8 @@
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_BITCODE = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "${SRCROOT}/PrefixHeader.pch";
 				INFOPLIST_FILE = split_bundler_demo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -742,6 +752,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "${SRCROOT}/PrefixHeader.pch";
 				INFOPLIST_FILE = split_bundler_demo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (

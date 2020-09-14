@@ -18,7 +18,7 @@ class Home extends PureComponent {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Home</Text>
+        <Text>Home render</Text>
       </View>
     );
   }

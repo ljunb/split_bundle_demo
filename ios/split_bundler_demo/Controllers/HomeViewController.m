@@ -18,11 +18,12 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   
-  RCTRootView *rctView = [[RCTRootView alloc] initWithBridge:[ReactNativeManager sharedManager].bridge
-                                                  moduleName:@"home"
-                                           initialProperties:nil];
-  [self.view addSubview:rctView];
-  rctView.frame = self.view.bounds;
+  [[ReactNativeManager sharedManager] setupRootViewWithBundleName:@"home"
+                                                                           launchOptions:nil
+                                                                                complete:^(RCTRootView * _Nullable rctView) {
+    [self.view addSubview:rctView];
+    rctView.frame = self.view.bounds;
+  }];
 }
 
 @end
