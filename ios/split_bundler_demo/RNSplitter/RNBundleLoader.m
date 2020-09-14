@@ -46,7 +46,6 @@
 }
 
 - (void)loadBusinessBundleWithName:(NSString *)bundleName
-                     launchOptions:(NSDictionary *)launchOptions
                               sync:(BOOL)sync
                           complete:(nullable LoadBundleCompletion)complete {
   
@@ -58,17 +57,16 @@
     }
   }
   
-  [self loadBundleURLAtName:bundleName launchOptions:launchOptions sync:sync complete:complete];
+  [self loadBundleURLAtName:bundleName sync:sync complete:complete];
 }
 
 - (void)loadBundleURLAtName:(NSString *)bundleName
-              launchOptions:(NSDictionary *)launchOptions
                        sync:(BOOL)sync
                    complete:(nullable LoadBundleCompletion)complete {
 #if EnableRemoteDebug
   // 如果是远程调试，bundle URL 直接为 http://localhost:8081/index.bundle?platform=ios&dev=true&minify=false
   // TODO：支持自定义 remote URL
-  bundleName = [self remoteBundleURL].absoluteString;
+  bundleName = CommonBundleName;
 #else
 #endif
   // 已经加载过了
@@ -82,20 +80,22 @@
     [self cacheLoadedBundle:bundleName];
     
     if (sync) {
-      [self syncLoadBundleURLAtName:bundleName launchOptions:launchOptions complete:complete];
+      [self syncLoadBundleURLAtName:bundleName complete:complete];
     } else {
       dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        [self syncLoadBundleURLAtName:bundleName launchOptions:launchOptions complete:complete];
+        [self syncLoadBundleURLAtName:bundleName complete:complete];
       });
     }
   }
 }
 
 - (void)syncLoadBundleURLAtName:(NSString *)bundleName
-                  launchOptions:(NSDictionary *)launchOptions
                        complete:(nullable LoadBundleCompletion)complete {
-
+#if EnableRemoteDebug
+  NSURL *bundleURL = self.remoteBundleURL;
+#else
   NSURL *bundleURL = [self bundleURLWithName:bundleName];
+#endif
   NSAssert(bundleURL, @"加载bundle失败，bundleURL为nil");
   
   [RCTJavaScriptLoader loadBundleAtURL:bundleURL
@@ -133,7 +133,7 @@
     return;
   }
   for (NSString *bundleName in self.preloadBundles) {
-    [self loadBundleURLAtName:bundleName launchOptions:nil sync:NO complete:nil];
+    [self loadBundleURLAtName:bundleName sync:NO complete:nil];
   }
 }
 
@@ -160,10 +160,10 @@
 #if EnableRemoteDebug
   NSURL *bundleURL = self.remoteBundleURL;
 #else
-  NSURL *bundleURL = [self bundleURLWithName:@"common"];
+  NSURL *bundleURL = [self bundleURLWithName:CommonBundleName];
 #endif
-  if (![self.loadedBundle containsObject:bundleURL.absoluteString]) {
-    [self cacheLoadedBundle:bundleURL.absoluteString];
+  if (![self.loadedBundle containsObject:CommonBundleName]) {
+    [self cacheLoadedBundle:CommonBundleName];
   }
   // 基础bundle的URL
   return bundleURL;

@@ -19,6 +19,8 @@
 		374AD42101517EA0B3E31D89 /* libPods-split_bundler_demo-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A488D3ED215012D302753AF9 /* libPods-split_bundler_demo-tvOSTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		AAB09056250F3C89009541EE /* RNBundleLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB09055250F3C89009541EE /* RNBundleLoader.m */; };
+		AAB0905E250F6223009541EE /* RNBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB0905D250F6223009541EE /* RNBaseViewController.m */; };
+		AAB09061250F6297009541EE /* RNRouteManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB09060250F6297009541EE /* RNRouteManager.m */; };
 		AADF1699250CC51A005536C3 /* common.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AADF1698250CC519005536C3 /* common.bundle */; };
 		AADF169D250CC523005536C3 /* profile.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AADF169A250CC522005536C3 /* profile.bundle */; };
 		AADF169E250CC523005536C3 /* home.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AADF169B250CC522005536C3 /* home.bundle */; };
@@ -73,6 +75,10 @@
 		AAB09053250F177A009541EE /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		AAB09054250F3C89009541EE /* RNBundleLoader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNBundleLoader.h; sourceTree = "<group>"; };
 		AAB09055250F3C89009541EE /* RNBundleLoader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNBundleLoader.m; sourceTree = "<group>"; };
+		AAB0905C250F6223009541EE /* RNBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNBaseViewController.h; sourceTree = "<group>"; };
+		AAB0905D250F6223009541EE /* RNBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNBaseViewController.m; sourceTree = "<group>"; };
+		AAB0905F250F6297009541EE /* RNRouteManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNRouteManager.h; sourceTree = "<group>"; };
+		AAB09060250F6297009541EE /* RNRouteManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNRouteManager.m; sourceTree = "<group>"; };
 		AADF1698250CC519005536C3 /* common.bundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = common.bundle; path = ../outputs/common.bundle; sourceTree = "<group>"; };
 		AADF169A250CC522005536C3 /* profile.bundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = profile.bundle; path = ../outputs/business/profile.bundle; sourceTree = "<group>"; };
 		AADF169B250CC522005536C3 /* home.bundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = home.bundle; path = ../outputs/business/home.bundle; sourceTree = "<group>"; };
@@ -152,6 +158,9 @@
 		13B07FAE1A68108700A75B9A /* split_bundler_demo */ = {
 			isa = PBXGroup;
 			children = (
+				AAB0905B250F61D3009541EE /* RNModule */,
+				AADF16A2250CCC84005536C3 /* Controllers */,
+				AADF16AB250CCC85005536C3 /* RNSplitter */,
 				AADF169B250CC522005536C3 /* home.bundle */,
 				AADF169C250CC522005536C3 /* index.bundle */,
 				AADF169A250CC522005536C3 /* profile.bundle */,
@@ -159,8 +168,6 @@
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
-				AADF16A2250CCC84005536C3 /* Controllers */,
-				AADF16AB250CCC85005536C3 /* RNSplitter */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
@@ -216,6 +223,16 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		AAB0905B250F61D3009541EE /* RNModule */ = {
+			isa = PBXGroup;
+			children = (
+				AAB0905F250F6297009541EE /* RNRouteManager.h */,
+				AAB09060250F6297009541EE /* RNRouteManager.m */,
+			);
+			name = RNModule;
+			path = split_bundler_demo/RNModule;
+			sourceTree = "<group>";
+		};
 		AADF16A2250CCC84005536C3 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -227,6 +244,8 @@
 				AADF16A6250CCC85005536C3 /* MainViewController.m */,
 				AADF16A8250CCC85005536C3 /* HomeViewController.h */,
 				AADF16A3250CCC84005536C3 /* HomeViewController.m */,
+				AAB0905C250F6223009541EE /* RNBaseViewController.h */,
+				AAB0905D250F6223009541EE /* RNBaseViewController.m */,
 			);
 			name = Controllers;
 			path = split_bundler_demo/Controllers;
@@ -639,8 +658,10 @@
 				AADF16B2250CCC85005536C3 /* ReactNativeManager.m in Sources */,
 				AAB09056250F3C89009541EE /* RNBundleLoader.m in Sources */,
 				AADF16B1250CCC85005536C3 /* ProfileViewController.m in Sources */,
+				AAB09061250F6297009541EE /* RNRouteManager.m in Sources */,
 				AADF16AE250CCC85005536C3 /* HomeViewController.m in Sources */,
 				AADF16B0250CCC85005536C3 /* IndexViewController.m in Sources */,
+				AAB0905E250F6223009541EE /* RNBaseViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

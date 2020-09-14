@@ -35,7 +35,6 @@ typedef void(^LoadBundleCompletion)(NSError * _Nullable error);
  @param complete bundle加载结束回调
  */
 - (void)loadBusinessBundleWithName:(NSString *)bundleName
-                     launchOptions: (NSDictionary *)launchOptions
                               sync:(BOOL)sync
                           complete:(nullable LoadBundleCompletion)complete;
 

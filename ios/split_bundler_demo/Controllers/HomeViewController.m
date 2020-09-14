@@ -18,12 +18,7 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   
-  [[ReactNativeManager sharedManager] setupRootViewWithBundleName:@"home"
-                                                                           launchOptions:nil
-                                                                                complete:^(RCTRootView * _Nullable rctView) {
-    [self.view addSubview:rctView];
-    rctView.frame = self.view.bounds;
-  }];
+  [self setupWithBundleName:BusinessBundleNameHome];
 }
 
 @end

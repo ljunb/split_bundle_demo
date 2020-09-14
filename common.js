@@ -1,2 +1,9 @@
 require('react');
 require('react-native');
+require('@react-native-community/masked-view');
+require('@react-navigation/native');
+require('react-native-gesture-handler');
+require('react-native-reanimated');
+require('react-native-safe-area-context');
+require('react-native-screens');
+require('@react-navigation/stack');

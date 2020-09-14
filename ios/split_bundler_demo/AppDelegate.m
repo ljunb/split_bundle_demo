@@ -10,7 +10,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 
-  [[ReactNativeManager sharedManager] setupPreloadBundles:@[@"home"]];
+  [[ReactNativeManager sharedManager] setupPreloadBundles:@[BusinessBundleNameHome]];
   [[ReactNativeManager sharedManager] asyncLoadCommonBundle];
 
   self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];

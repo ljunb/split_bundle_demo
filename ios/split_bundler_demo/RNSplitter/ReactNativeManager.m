@@ -55,7 +55,6 @@
   
   __weak typeof(self) weakSelf = self;
   [self.bundleLoader loadBusinessBundleWithName:bundleName
-                                  launchOptions:launchOptions
                                            sync:YES
                                        complete:^(NSError * _Nullable error) {
     if (complete) {
@@ -63,10 +62,6 @@
       if (error) {
         complete(nil);
       } else {
-#if DEBUG
-        // 见 https://github.com/facebook/react-native/issues/16376#issuecomment-502342466
-        [weakSelf.bridge moduleForClass:[RCTDevLoadingView class]];
-#endif
         RCTRootView *rctView = [[RCTRootView alloc] initWithBridge:weakSelf.bridge
                                                         moduleName:bundleName
                                                  initialProperties:launchOptions];

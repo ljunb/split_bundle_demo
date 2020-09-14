@@ -223,7 +223,7 @@ npm run build-profile
 - [x] 分包处理
 - [x] 按需加载
 - [x] 调试相关
-- [ ] 路由管理
+- [x] 路由管理
 - [ ] 打包config文件优化以及cli支持
 - [ ] ram-bundle 深入研究
 - [ ] 热更相关

@@ -5,11 +5,11 @@
 //  Created by linjb on 2020/9/12.
 //
 
-#import <UIKit/UIKit.h>
+#import "RNBaseViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface HomeViewController : UIViewController
+@interface HomeViewController : RNBaseViewController
 
 @end
 

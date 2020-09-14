@@ -6,8 +6,6 @@
 //
 
 #import "ProfileViewController.h"
-#import <React/RCTRootView.h>
-#import "ReactNativeManager.h"
 
 @interface ProfileViewController ()
 
@@ -17,14 +15,8 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  self.view.backgroundColor = UIColor.whiteColor;
-  [[ReactNativeManager sharedManager] setupRootViewWithBundleName:@"profile"
-                                                    launchOptions:nil
-                                                         complete:^(RCTRootView * _Nonnull rctView) {
-    [self.view addSubview:rctView];
-    rctView.frame = self.view.bounds;
-  }];
   
+  [self setupWithBundleName:BusinessBundleNameProfile];
 }
 
 
