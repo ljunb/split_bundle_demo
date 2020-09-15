@@ -46,7 +46,9 @@ function App(props) {
   const {initialRouteName = 'ProfileHome'} = props;
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName={initialRouteName}>
+      <Stack.Navigator
+        initialRouteName={initialRouteName}
+        screenOptions={{headerShown: false}}>
         <Stack.Screen name="ProfileHome" component={HomeScreen} />
         <Stack.Screen name="ProfileDetail" component={DetailScreen} />
       </Stack.Navigator>

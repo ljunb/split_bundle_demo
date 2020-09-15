@@ -30,11 +30,12 @@ function HomeScreen({navigation}) {
   );
 }
 
-function DetailScreen(props) {
+function DetailScreen({route}) {
+  const {params = {}} = route;
   return (
     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
       <Text onPress={() => RNRoute.pop()}>Detail Screen</Text>
-      <Text style={{marginTop: 20}}>Extra infos: {props.info}</Text>
+      <Text style={{marginTop: 20}}>Extra infos: {params.info}</Text>
     </View>
   );
 }
@@ -43,13 +44,21 @@ const Stack = createStackNavigator();
 
 function App(props) {
   const {initialRouteName = 'Home'} = props;
-  // todo：不同business页面传参
-  alert(JSON.stringify(props));
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName={initialRouteName}>
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Detail" component={DetailScreen} />
+      <Stack.Navigator
+        initialRouteName={initialRouteName}
+        screenOptions={{headerShown: false}}>
+        <Stack.Screen
+          name="Home"
+          component={HomeScreen}
+          initialParams={props}
+        />
+        <Stack.Screen
+          name="Detail"
+          component={DetailScreen}
+          initialParams={props}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
