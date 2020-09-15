@@ -72,7 +72,7 @@
   // 已经加载过了
   if ([self.loadedBundle containsObject:bundleName]) {
     if (complete) {
-      // 预加载过的场景，这里需要返回一个view
+      // TODO: 预加载过的场景，这里需要返回一个view
       complete(nil);
     }
   } else {
@@ -91,11 +91,8 @@
 
 - (void)syncLoadBundleURLAtName:(NSString *)bundleName
                        complete:(nullable LoadBundleCompletion)complete {
-#if EnableRemoteDebug
-  NSURL *bundleURL = self.remoteBundleURL;
-#else
+
   NSURL *bundleURL = [self bundleURLWithName:bundleName];
-#endif
   NSAssert(bundleURL, @"加载bundle失败，bundleURL为nil");
   
   [RCTJavaScriptLoader loadBundleAtURL:bundleURL

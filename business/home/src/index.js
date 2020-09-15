@@ -3,11 +3,12 @@
  * Date        : 2020/9/14
  * Description :
  */
+import 'react-native-gesture-handler';
 import * as React from 'react';
 import {View, Text} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-import RNRoute from '../../../RNRoute';
+import RNRoute from '../../../routes/RNRoute';
 
 function HomeScreen({navigation}) {
   return (
@@ -23,7 +24,7 @@ function HomeScreen({navigation}) {
       </Text>
       <Text
         style={{marginTop: 20}}
-        onPress={() => navigation.navigate('Detail')}>
+        onPress={() => navigation.navigate('HomeDetail')}>
         Open detail screen
       </Text>
     </View>
@@ -44,6 +45,7 @@ const Stack = createStackNavigator();
 
 function App(props) {
   const {initialRouteName = 'Home'} = props;
+
   return (
     <NavigationContainer>
       <Stack.Navigator
@@ -55,7 +57,7 @@ function App(props) {
           initialParams={props}
         />
         <Stack.Screen
-          name="Detail"
+          name="HomeDetail"
           component={DetailScreen}
           initialParams={props}
         />

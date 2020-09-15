@@ -2,6 +2,16 @@
 
 网上已有很多关于 `bundle` 拆分的资料，自己也是做了参考。目前主要是针对 `react-native bundle` 命令的拆分，实际官方支持 `react-native ram-bundle`（旧：`react-native unbundle`）命令，公司已有一套基于 `unbundle` 的拆包和按需加载封装，待有空继续研究。
 
+### 目录
+- [简介](#简介)
+- [流程](#流程)
+    - [分包](#分包)
+    - [按需加载](#按需加载)
+    - [调试](#调试)
+    - [路由管理](#路由管理)
+- [示例运行](#示例运行)
+- [参考资料](#参考资源)
+
 ### 简介
 前置了解：
 > 打包生成的文件结构
@@ -17,7 +27,7 @@ react-native bundle --entry-file ./index.js --bundle-output ./outputs/main.jsbun
 * `processModuleFilter`：打包过滤命令，返回 `true` 代表需要打进 `bundle` 里面，否则忽略
 
 ### 流程
-#### Metro 序列化设置
+#### 分包
 当我们想打不同的 `bundle` 的时候，将会在打包命令上增加 `--config some.config.js` 来区分。比如打基础包时：
 ```shell script
 react-native bundle --entry-file ./index.js --config ./common.config.js --bundle-output ./outputs/main.jsbundle --dev false --platform ios
@@ -194,7 +204,7 @@ module.exports = {
 ```
 最终打包结果 `common.bundle` 大小为 767KB，`home.bundle` 和 `profile.bundle` 都为 2KB。具体文件位置 [common.js](https://github.com/ljunb/split_bundle_demo/blob/master/common.js)、[home.js](https://github.com/ljunb/split_bundle_demo/blob/master/business/home/entry.js) 和 [profile.js](https://github.com/ljunb/split_bundle_demo/blob/master/business/profile/entry.js) 。
 
-#### Native 端支持
+#### 按需加载
 分包我们已经完成，接下来需要增加 Native 端的支持。按一开始分包后的预期，是实现基础包的预加载，然后在进入具体业务页面的时候，再按需加载对应的业务 `bundle`。
 
 在有一个基础思路的指引后，可以新增一个针对 ReactNative 简单管理的类 [ReactNativeManager](https://github.com/ljunb/split_bundle_demo/blob/master/ios/split_bundler_demo/RNSplitter/ReactNativeManager.h) 以及专门管理 `bundle` 加载的类 [RNBundleLoader](https://github.com/ljunb/split_bundle_demo/blob/master/ios/split_bundler_demo/RNSplitter/RNBundleLoader.h)，简单梳理如下：
@@ -207,7 +217,37 @@ module.exports = {
 
 更具体的逻辑可以查看源码。
 
-#### 示例运行
+#### 调试
+当工程在进入调试模式的时候，其实可以不必考虑分包跟预加载的事情，因此在该模式下，完全可以沿用官方之前的做法。定义一个调试模式开关变量 `EnableRemoteDebug` ，当然也可以直接使用 `RCT_DEBUG`。当开启调试模式时，在之前加载基础包的代理方法中，直接返回远程调试的 `URL`：
+```objc
+// ReactNativeManager.m
+#pragma mark - RCTBridgeDelegate
+- (NSURL *)sourceURLForBridge:(RCTBridge *)bridge {
+  return self.bundleLoader.commonBundleURL;
+}
+
+
+// RNBundleLoader.m
+- (NSURL *)commonBundleURL {
+#if EnableRemoteDebug
+  NSURL *bundleURL = self.remoteBundleURL;
+#else
+  NSURL *bundleURL = [self bundleURLWithName:CommonBundleName];
+#endif
+  if (![self.loadedBundle containsObject:CommonBundleName]) {
+    [self cacheLoadedBundle:CommonBundleName];
+  }
+  // 基础bundle的URL
+  return bundleURL;
+}
+
+```
+当 App 启动加载了远程调试 `URL` 时，与按需加载时逻辑一致，也会做缓存处理，名称同基础包。后续进入某个业务的页面时，判断为当前已经加载过基础包逻辑，直接触发结束回调，不再加载远程调试 `URL`。
+
+#### 路由管理
+待续……
+
+### 示例运行
 ```shell script
 git clone https://github.com/ljunb/split_bundle_demo.git
 cd split_bundle_demo && npm install

@@ -15,7 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSDictionary *launchOptions;
 @property (nonatomic, copy, readonly) NSDictionary *commonParams;
 
-- (instancetype)initWithInitialRouteName:(NSString *)routeName launchOptions:(nullable NSDictionary *)launchOptions;
+- (instancetype)initWithInitialRouteName:(nullable NSString *)routeName
+                           launchOptions:(nullable NSDictionary *)launchOptions;
 
 - (void)setupWithBundleName:(NSString *)bundleName;
 

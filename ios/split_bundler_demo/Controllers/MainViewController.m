@@ -6,16 +6,14 @@
 //
 
 #import "MainViewController.h"
-#import "HomeViewController.h"
-#import "ProfileViewController.h"
-#import "IndexViewController.h"
+
+#import "RNBaseViewController.h"
 
 #define SCREEN_W [UIScreen mainScreen].bounds.size.width
 
 @interface MainViewController ()
 @property (nonatomic, strong) UIButton *jumpHomeBtn;
 @property (nonatomic, strong) UIButton *jumpProfileBtn;
-@property (nonatomic, strong) UIButton *jumpIndexBtn;
 @end
 
 @implementation MainViewController
@@ -30,22 +28,20 @@
 - (void)initSubviews {
   [self.view addSubview:self.jumpHomeBtn];
   [self.view addSubview:self.jumpProfileBtn];
-// TODO：预加载基础bundle后，加载完整的未拆分bundle显示白屏
-//  [self.view addSubview:self.jumpIndexBtn];
   self.jumpHomeBtn.frame = CGRectMake(0, 200, SCREEN_W, 30);
   self.jumpProfileBtn.frame = CGRectMake(0, CGRectGetMaxY(self.jumpHomeBtn.frame) + 20, SCREEN_W, 30);
-  self.jumpIndexBtn.frame = CGRectMake(0, CGRectGetMaxY(self.jumpProfileBtn.frame) + 20, SCREEN_W, 30);
 }
 
 - (void)jumpAction:(UIButton *)button {
   NSInteger tag = button.tag;
+  RNBaseViewController *rnVC = [[RNBaseViewController alloc] initWithInitialRouteName:nil launchOptions:nil];
   if (tag == 100) {
-    [self.navigationController pushViewController:[HomeViewController new] animated:YES];
+    [rnVC setupWithBundleName:BusinessBundleNameHome];
   } else if (tag == 110) {
-    [self.navigationController pushViewController:[ProfileViewController new] animated:YES];
-  } else if (tag == 120) {
-    [self.navigationController pushViewController:[IndexViewController new] animated:YES];
+    [rnVC setupWithBundleName:BusinessBundleNameProfile];
   }
+
+  [self.navigationController pushViewController:rnVC animated:YES];
 }
 
 - (UIButton *)jumpHomeBtn {
@@ -68,17 +64,6 @@
     [_jumpProfileBtn addTarget:self action:@selector(jumpAction:) forControlEvents:UIControlEventTouchUpInside];
   }
   return _jumpProfileBtn;
-}
-
-- (UIButton *)jumpIndexBtn {
-  if (!_jumpIndexBtn) {
-    _jumpIndexBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [_jumpIndexBtn setTitle:@"跳转到无拆包的index业务（完整bundle）" forState:UIControlStateNormal];
-    [_jumpIndexBtn setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
-    _jumpIndexBtn.tag = 120;
-    [_jumpIndexBtn addTarget:self action:@selector(jumpAction:) forControlEvents:UIControlEventTouchUpInside];
-  }
-  return _jumpIndexBtn;
 }
 
 

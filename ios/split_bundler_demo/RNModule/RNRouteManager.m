@@ -10,7 +10,6 @@
 #import <UIKit/UIKit.h>
 
 #import "RNBaseViewController.h"
-#import "HomeViewController.h"
 
 @interface UIWindow (Visible)
 + (UIViewController *)getVisibleViewControllerFrom:(UIViewController *)vc;
@@ -32,9 +31,21 @@
 }
 @end
 
+@interface RNRouteManager ()
+@property (nonatomic, strong) NSDictionary *bundleMap;
+@end
+
 @implementation RNRouteManager
 
 RCT_EXPORT_MODULE()
+
+- (instancetype)init {
+  if (self = [super init]) {
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"BundleRoutesMap" ofType:@"plist"];
+    self.bundleMap = [[NSDictionary alloc] initWithContentsOfFile:path];
+  }
+  return self;
+}
 
 - (dispatch_queue_t)methodQueue {
   return dispatch_get_main_queue();
@@ -49,19 +60,16 @@ RCT_EXPORT_METHOD(pop) {
 }
 
 RCT_EXPORT_METHOD(navigate:(NSString *)pageName params:(NSDictionary *)params) {
-  if (!pageName || pageName.length == 0) {
-    return;
-  }
+  NSString *bundleName = [self.bundleMap objectForKey:pageName];
+  NSAssert(bundleName, @"该页面没有注册到对应bundle路由中");
   
-  // todo: mapping module name to bundle
-  if ([pageName isEqualToString:@"Detail"]) {
-    HomeViewController *homeVC = [[HomeViewController alloc] initWithInitialRouteName:pageName
+  RNBaseViewController *rnVC = [[RNBaseViewController alloc] initWithInitialRouteName:pageName
                                                                         launchOptions:params];
-    
-    UIViewController *rootViewController =[[[[UIApplication sharedApplication] delegate] window] rootViewController];
-    UIViewController *topVC = [UIWindow getVisibleViewControllerFrom:rootViewController];
-    [topVC.navigationController pushViewController:homeVC animated:YES];
-  }
+  [rnVC setupWithBundleName:bundleName];
+  
+  UIViewController *rootViewController =[[[[UIApplication sharedApplication] delegate] window] rootViewController];
+  UIViewController *topVC = [UIWindow getVisibleViewControllerFrom:rootViewController];
+  [topVC.navigationController pushViewController:rnVC animated:YES];
 }
 
 

@@ -3,11 +3,12 @@
  * Date        : 2020/9/14
  * Description :
  */
+import 'react-native-gesture-handler';
 import * as React from 'react';
 import {View, Text} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-import RNRoute from '../../../RNRoute';
+import RNRoute from '../../../routes/RNRoute';
 
 function HomeScreen() {
   return (
@@ -24,7 +25,7 @@ function HomeScreen() {
       <Text
         style={{marginTop: 20}}
         onPress={() =>
-          RNRoute.navigate('Detail', {info: 'from profile business'})
+          RNRoute.navigate('HomeDetail', {info: 'from profile business'})
         }>
         Open detail screen of home business
       </Text>

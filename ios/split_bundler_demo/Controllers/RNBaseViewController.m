@@ -19,7 +19,7 @@
 
 @implementation RNBaseViewController
 
-- (instancetype)initWithInitialRouteName:(NSString *)routeName launchOptions:(NSDictionary *)launchOptions {
+- (instancetype)initWithInitialRouteName:(nullable NSString *)routeName launchOptions:(nullable NSDictionary *)launchOptions {
   if (self = [super init]) {
     _initialRouteName = routeName;
     _launchOptions = launchOptions;
@@ -57,9 +57,11 @@
   [[ReactNativeManager sharedManager] setupRootViewWithBundleName:bundleName
                                                     launchOptions:extraInfo
                                                          complete:^(RCTRootView * _Nullable rctView) {
-    if (!rctView) { return; }
+    if (!rctView) {
+      self.placeholderLabel.hidden = NO;
+      return;
+    }
 
-    self.placeholderLabel.hidden = YES;
     [self.view addSubview:rctView];
     rctView.frame = self.view.bounds;
   }];
@@ -74,9 +76,10 @@
 
 #pragma mark - NavigationControllerDelegate
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
-    [self.navigationController setNavigationBarHidden:[viewController isKindOfClass:[self class]]
-                                             animated:YES];
+  BOOL isRNPage = [viewController isKindOfClass:[RNBaseViewController class]];
+  [self.navigationController setNavigationBarHidden:isRNPage animated:YES];
 }
+
 
 - (UILabel *)placeholderLabel {
   if (!_placeholderLabel) {
@@ -86,6 +89,7 @@
       label.textColor = UIColor.redColor;
       label.font = [UIFont systemFontOfSize:14];
       label.textAlignment = NSTextAlignmentCenter;
+      label.hidden = YES;
       label;
     });
   }
