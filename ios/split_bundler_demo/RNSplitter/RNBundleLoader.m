@@ -64,15 +64,14 @@
                        sync:(BOOL)sync
                    complete:(nullable LoadBundleCompletion)complete {
 #if EnableRemoteDebug
-  // 如果是远程调试，bundle URL 直接为 http://localhost:8081/index.bundle?platform=ios&dev=true&minify=false
-  // TODO：支持自定义 remote URL
+  // 如果是远程调试，bundle name 设置为 common
   bundleName = CommonBundleName;
 #else
 #endif
   // 已经加载过了
   if ([self.loadedBundle containsObject:bundleName]) {
     if (complete) {
-      // TODO: 预加载过的场景，这里需要返回一个view
+      // 预加载过的场景，这里需要返回一个view
       complete(nil);
     }
   } else {
@@ -112,6 +111,14 @@
       }
     }
   }];
+}
+
+- (void)updateRemoteBundleURL:(NSString *)bundleURL {
+  if (!bundleURL) {
+    return;
+  }
+  [[NSUserDefaults standardUserDefaults] setValue:bundleURL forKey:CustomRemoteURLCacheKey];
+  [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 
@@ -167,7 +174,11 @@
 }
 
 - (NSURL *)remoteBundleURL {
-  return [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
+  NSString *result = [[NSUserDefaults standardUserDefaults] valueForKey:CustomRemoteURLCacheKey];
+  if (!result) {
+    return [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
+  }
+  return [NSURL URLWithString:result];
 }
 
 - (NSMutableArray *)loadedBundle {

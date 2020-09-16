@@ -6,8 +6,11 @@
 //
 
 #import <Foundation/Foundation.h>
-@class RCTBridge;
-@class RCTRootView;
+
+#import <React/RCTBridge.h>
+#import <React/RCTRootView.h>
+
+#import "RNBundleLoader.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -21,6 +24,10 @@ typedef void(^SetupRootViewBlock)(RCTRootView * _Nullable rctView);
  全局唯一的bridge
  */
 @property (nonatomic, strong) RCTBridge *bridge;
+/**
+ bundle加载管理类
+ */
+@property (nonatomic, strong) RNBundleLoader *bundleLoader;
 /**
  启动初始参数
  */

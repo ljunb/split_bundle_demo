@@ -8,17 +8,10 @@
 #import "ReactNativeManager.h"
 
 #import <React/RCTBridgeDelegate.h>
-#import <React/RCTBridge.h>
-#import <React/RCTRootView.h>
 #import <React/RCTDevLoadingView.h>
 
-#import "RNBundleLoader.h"
-
 @interface ReactNativeManager () <RCTBridgeDelegate>
-/**
- bundle加载管理类
- */
-@property (nonatomic, strong) RNBundleLoader *bundleLoader;
+
 @end
 
 @implementation ReactNativeManager

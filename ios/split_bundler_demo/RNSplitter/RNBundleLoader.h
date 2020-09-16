@@ -38,6 +38,8 @@ typedef void(^LoadBundleCompletion)(NSError * _Nullable error);
                               sync:(BOOL)sync
                           complete:(nullable LoadBundleCompletion)complete;
 
+- (void)updateRemoteBundleURL:(NSString *)bundleURL;
+
 @end
 
 NS_ASSUME_NONNULL_END

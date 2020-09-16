@@ -14,6 +14,11 @@
 #define EnableRemoteDebug 1
 
 /**
+ 自定义的远程调试URL
+ */
+#define CustomRemoteURLCacheKey @"CustomRemoteURLCacheKey"
+
+/**
  基础包名称
  */
 #define CommonBundleName @"common"
