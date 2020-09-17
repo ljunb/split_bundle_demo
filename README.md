@@ -119,6 +119,7 @@ const fs = require('fs');
 const path = require('path');
 const pathSep = path.sep;
 
+let comDepFiles = [];
 let comDepSet = null;
 const checkCommonDependency = (depPath) => {
   const outputsPath = `${process.cwd()}${pathSep}outputs${pathSep}`;
@@ -129,13 +130,14 @@ const checkCommonDependency = (depPath) => {
     fs.mkdirSync(businessPath);
   }
 
-  // TODO：待优化，每次都生成一个set了
   if (comDepSet === null && fs.existsSync(commonDepPath)) {
     // 获取基础包的依赖，保存到一个集合里面
-    const depPaths = String(fs.readFileSync(commonDepPath))
-      .split('\n')
-      .filter((dep) => dep.length > 0);
-    comDepSet = new Set(depPaths);
+    if (comDepFiles.length === 0) {
+      comDepFiles = String(fs.readFileSync(commonDepPath))
+        .split('\n')
+        .filter((dep) => dep.length > 0);
+    }
+    comDepSet = new Set(comDepFiles);
   } else if (comDepSet === null) {
     comDepSet = new Set();
   }
@@ -264,7 +266,7 @@ npm run build-profile
 - [x] 按需加载
 - [x] 调试相关
 - [x] 路由管理
-- [ ] 打包config文件优化以及cli支持
+- [ ] cli支持
 - [ ] ram-bundle 深入研究
 - [ ] 热更相关
 
